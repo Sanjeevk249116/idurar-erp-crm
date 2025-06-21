@@ -1,5 +1,4 @@
 import useLanguage from '@/locale/useLanguage';
-
 import { Layout, Col, Divider, Typography } from 'antd';
 
 import AuthLayout from '@/layout/AuthLayout';
