@@ -9,6 +9,7 @@ export const crud = {
         type: actionTypes.RESET_STATE,
       });
     },
+
   resetAction:
     ({ actionType }) =>
     async (dispatch) => {
@@ -18,6 +19,7 @@ export const crud = {
         payload: null,
       });
     },
+
   currentItem:
     ({ data }) =>
     async (dispatch) => {
@@ -26,6 +28,7 @@ export const crud = {
         payload: { ...data },
       });
     },
+
   currentAction:
     ({ actionType, data }) =>
     async (dispatch) => {
@@ -35,6 +38,7 @@ export const crud = {
         payload: { ...data },
       });
     },
+
   list:
     ({ entity, options = { page: 1, items: 10 } }) =>
     async (dispatch) => {
@@ -68,6 +72,7 @@ export const crud = {
         });
       }
     },
+
   create:
     ({ entity, jsonData, withUpload = false }) =>
     async (dispatch) => {
@@ -102,6 +107,7 @@ export const crud = {
         });
       }
     },
+
   read:
     ({ entity, id }) =>
     async (dispatch) => {
@@ -131,6 +137,7 @@ export const crud = {
         });
       }
     },
+    
   update:
     ({ entity, id, jsonData, withUpload = false }) =>
     async (dispatch) => {

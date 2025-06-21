@@ -7,6 +7,7 @@ const NotFound = lazy(() => import('@/pages/NotFound.jsx'));
 
 const Dashboard = lazy(() => import('@/pages/Dashboard'));
 const Customer = lazy(() => import('@/pages/Customer'));
+const Query = lazy(() => import('@/pages/Query'));
 const Invoice = lazy(() => import('@/pages/Invoice'));
 const InvoiceCreate = lazy(() => import('@/pages/Invoice/InvoiceCreate'));
 
@@ -76,6 +77,10 @@ let routes = {
     {
       path: '/quote',
       element: <Quote />,
+    },
+    {
+      path: '/query',
+      element: <Query />,
     },
     {
       path: '/quote/create',

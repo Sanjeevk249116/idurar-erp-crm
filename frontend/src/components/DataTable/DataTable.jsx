@@ -76,6 +76,7 @@ export default function DataTable({ config, extra = [] }) {
     collapsedBox.open();
     readBox.open();
   };
+
   function handleEdit(record) {
     dispatch(crud.currentItem({ data: record }));
     dispatch(crud.currentAction({ actionType: 'update', data: record }));
@@ -87,7 +88,6 @@ export default function DataTable({ config, extra = [] }) {
     dispatch(crud.currentAction({ actionType: 'delete', data: record }));
     modal.open();
   }
-
   function handleUpdatePassword(record) {
     dispatch(crud.currentItem({ data: record }));
     dispatch(crud.currentAction({ actionType: 'update', data: record }));
