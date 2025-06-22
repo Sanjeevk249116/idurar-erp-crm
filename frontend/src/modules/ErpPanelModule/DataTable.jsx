@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import {
   EyeOutlined,
   EditOutlined,
@@ -23,6 +23,7 @@ import { generate as uniqueId } from 'shortid';
 import { useNavigate } from 'react-router-dom';
 
 import { DOWNLOAD_BASE_URL } from '@/config/serverApiConfig';
+import SelectTag from '@/components/SelectTag';
 
 function AddNewItem({ config }) {
   const navigate = useNavigate();
@@ -41,8 +42,8 @@ function AddNewItem({ config }) {
 
 export default function DataTable({ config, extra = [] }) {
   const translate = useLanguage();
-  let { entity, dataTableColumns, disableAdd = false, searchConfig } = config;
-
+  const [selectValue, setSelectValue] = useState(config.default)
+  let { entity, dataTableColumns, selectName = false, disableAdd = false, searchConfig, selectOption } = config;
   const { DATATABLE_TITLE } = config;
 
   const { result: listResult, isLoading: listIsLoading } = useSelector(selectListItems);
@@ -169,6 +170,7 @@ export default function DataTable({ config, extra = [] }) {
   }, []);
 
   const filterTable = (value) => {
+    setSelectValue(value)
     const options = { equal: value, filter: searchConfig?.entity };
     dispatch(erp.list({ entity, options }));
   };
@@ -181,15 +183,21 @@ export default function DataTable({ config, extra = [] }) {
         onBack={() => window.history.back()}
         backIcon={<ArrowLeftOutlined />}
         extra={[
-          <AutoCompleteAsync
+          !selectName && <AutoCompleteAsync
             key={`${uniqueId()}`}
             entity={searchConfig?.entity}
             displayLabels={['name']}
             searchFields={'name'}
             onChange={filterTable}
-            // redirectLabel={'Add New Client'}
-            // withRedirect
-            // urlToRedirect={'/customer'}
+          // redirectLabel={'Add New Client'}
+          // withRedirect
+          // urlToRedirect={'/customer'}
+          />,
+          <SelectTag
+            key={`${uniqueId()}`}
+            options={selectOption}
+            onChange={filterTable}
+            defaultValue={selectValue}
           />,
           <Button onClick={handelDataTableLoad} key={`${uniqueId()}`} icon={<RedoOutlined />}>
             {translate('Refresh')}

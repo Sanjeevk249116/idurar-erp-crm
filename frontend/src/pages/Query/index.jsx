@@ -10,15 +10,15 @@ export default function Query() {
   const { moneyFormatter } = useMoney();
 
   const searchConfig = {
-    entity: 'query',
-    displayLabels: ['status'],
-    searchFields: 'status',
+    entity: 'status',
+    displayLabels: ['name'],
+    searchFields: 'name',
   };
-  const deleteModalLabels = ['customer_name'];
+  const deleteModalLabels = ['customerName'];
   const dataTableColumns = [
     {
       title: translate('Customer Name'),
-      dataIndex: 'customer_name',
+      dataIndex: 'customerName',
     },
     {
       title: translate('Description'),
@@ -48,6 +48,7 @@ export default function Query() {
     ADD_NEW_ENTITY: translate('add_new_query'),
     ENTITY_NAME: translate('query'),
   };
+const selectOption=['Open', 'InProgress', 'Closed']
 
   const configPage = {
     entity,
@@ -58,6 +59,9 @@ export default function Query() {
     dataTableColumns,
     searchConfig,
     deleteModalLabels,
+    selectName:true,
+    selectOption,
+    default:"Open"
   };
   return <QueryManagementTableModule config={config} />;
 }

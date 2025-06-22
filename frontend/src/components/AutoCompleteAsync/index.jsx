@@ -71,6 +71,8 @@ export default function AutoCompleteAsync({
     return displayLabels.map((x) => optionField[x]).join(' ');
   };
 
+  console.log(result)
+
   useEffect(() => {
     const options = {
       q: debouncedValue,
@@ -101,6 +103,7 @@ export default function AutoCompleteAsync({
       // setOptions([]);
     }
   }, [isSuccess, result]);
+
   useEffect(() => {
     // this for update Form , it's for setField
     if (value && isUpdating.current) {

@@ -8,8 +8,12 @@ const paginatedList = async (req, res) => {
   const limit = parseInt(req.query.items) || 10;
   const skip = page * limit - limit;
 
-  //  Query the database for a list of all results
-  const { sortBy = 'enabled', sortValue = -1, filter, equal } = req.query;
+ const { sortBy = 'enabled', sortValue = -1, filter, equal } = req.query;
+   let queryFilter = {};
+
+    if (filter && equal) {
+      queryFilter[filter] = equal;
+    }
 
   const fieldsArray = req.query.fields ? req.query.fields.split(',') : [];
 
@@ -22,7 +26,7 @@ const paginatedList = async (req, res) => {
   }
 
   //  Query the database for a list of all results
-  const resultsPromise = await Model.find()
+  const resultsPromise = await Model.find(queryFilter)
     .skip(skip)
     .limit(limit)
 
