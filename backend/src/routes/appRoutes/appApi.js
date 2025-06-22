@@ -15,6 +15,12 @@ const routerApp = (entity, controller) => {
   router.route(`/${entity}/listAll`).get(catchErrors(controller['listAll']));
   router.route(`/${entity}/filter`).get(catchErrors(controller['filter']));
   router.route(`/${entity}/summary`).get(catchErrors(controller['summary']));
+  router.route(`/${entity}`).get(catchErrors(controller['list']));
+  router.route(`/${entity}`).post(catchErrors(controller['create']));
+  router.route(`/${entity}/:id`).get(catchErrors(controller['read']));
+  router.route(`/${entity}/:id`).put(catchErrors(controller['update']));
+  router.route(`/${entity}/:id/notes`).post(catchErrors(controller['create']));
+  router.route(`/${entity}/:id/notes/:noteId`).delete(catchErrors(controller['delete']));
 
   if (entity === 'invoice' || entity === 'quote' || entity === 'payment') {
     router.route(`/${entity}/mail`).post(catchErrors(controller['mail']));
